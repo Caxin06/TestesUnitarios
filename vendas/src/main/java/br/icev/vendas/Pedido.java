@@ -6,13 +6,34 @@ import java.util.Map;
 public class Pedido {
     public enum Status { PAGO }
 
-    public Pedido(Map<String, Integer> itensPorCodigo, BigDecimal totalPago,
-                  String codigoAutorizacao, Status status) {
-        throw new UnsupportedOperationException("TODO");
+    private Map<String, Integer> itensPorCodigo;
+    private BigDecimal totalPago;
+    private String codigoAutorizacao;
+    private Status status;
+
+    public Pedido(Map<String, Integer> itensPorCodigo, BigDecimal totalPago, String codigoAutorizacao, Status status) {
+        this.itensPorCodigo = itensPorCodigo;
+        this.totalPago = totalPago;
+        this.codigoAutorizacao = codigoAutorizacao;
+        this.status = status;
     }
 
-    public BigDecimal getTotalPago() { throw new UnsupportedOperationException("TODO"); }
-    public String getCodigoAutorizacao() { throw new UnsupportedOperationException("TODO"); }
-    public Status getStatus() { throw new UnsupportedOperationException("TODO"); }
-    public int getQuantidadeItem(String codigo) { throw new UnsupportedOperationException("TODO"); }
+    public BigDecimal getTotalPago() {
+        return totalPago;
+    }
+
+    public String getCodigoAutorizacao() {
+        return codigoAutorizacao;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public int getQuantidadeItem(String codigo) {
+        if (itensPorCodigo.containsKey(codigo)) {
+            return itensPorCodigo.get(codigo);
+        }
+        return 0;
+    }
 }
